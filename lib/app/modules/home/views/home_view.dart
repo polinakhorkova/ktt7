@@ -9,9 +9,12 @@ class HomeView extends GetView<HomeController> {
   const HomeView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       
+      backgroundColor: Color.fromRGBO(255, 153, 204, 1),
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(255, 51, 153, 1),
         title: const Text('CARS'),
         centerTitle: true,
       ),
@@ -54,12 +57,17 @@ class CarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Card(
       elevation: 1,
       child: ListTile(
         leading: Text(curCar.id.toString()),
         title: Text("${curCar.brand} ${curCar.model}"),
-        subtitle: Text(curCar.price.toString()),
+         trailing: curCar.availability == true
+              ? const Icon(Icons.favorite,
+                  size: 20, color: Colors.green, )
+            
+              : const Icon(Icons.favorite, size: 20, color: Colors.red),
       ),
     );
   }

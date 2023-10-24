@@ -27,6 +27,9 @@ mixin _$Car {
   String get model => throw _privateConstructorUsedError;
   @DoubleToStringConverter()
   double get price => throw _privateConstructorUsedError;
+  @JsonKey(name: 'car_color')
+  String get color => throw _privateConstructorUsedError;
+  bool get availability => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,7 +45,9 @@ abstract class $CarCopyWith<$Res> {
       {int id,
       @JsonKey(name: "car") String brand,
       @JsonKey(name: "car_model") String model,
-      @DoubleToStringConverter() double price});
+      @DoubleToStringConverter() double price,
+      @JsonKey(name: 'car_color') String color,
+      bool availability});
 }
 
 /// @nodoc
@@ -61,6 +66,8 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
     Object? brand = null,
     Object? model = null,
     Object? price = null,
+    Object? color = null,
+    Object? availability = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -79,6 +86,14 @@ class _$CarCopyWithImpl<$Res, $Val extends Car> implements $CarCopyWith<$Res> {
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
+      color: null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String,
+      availability: null == availability
+          ? _value.availability
+          : availability // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -93,7 +108,9 @@ abstract class _$$CarImplCopyWith<$Res> implements $CarCopyWith<$Res> {
       {int id,
       @JsonKey(name: "car") String brand,
       @JsonKey(name: "car_model") String model,
-      @DoubleToStringConverter() double price});
+      @DoubleToStringConverter() double price,
+      @JsonKey(name: 'car_color') String color,
+      bool availability});
 }
 
 /// @nodoc
@@ -109,6 +126,8 @@ class __$$CarImplCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$CarImpl>
     Object? brand = null,
     Object? model = null,
     Object? price = null,
+    Object? color = null,
+    Object? availability = null,
   }) {
     return _then(_$CarImpl(
       null == id
@@ -127,6 +146,14 @@ class __$$CarImplCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res, _$CarImpl>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
+      null == color
+          ? _value.color
+          : color // ignore: cast_nullable_to_non_nullable
+              as String,
+      null == availability
+          ? _value.availability
+          : availability // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -138,7 +165,9 @@ class _$CarImpl implements _Car {
       this.id,
       @JsonKey(name: "car") this.brand,
       @JsonKey(name: "car_model") this.model,
-      @DoubleToStringConverter() this.price);
+      @DoubleToStringConverter() this.price,
+      @JsonKey(name: 'car_color') this.color,
+      this.availability);
 
   factory _$CarImpl.fromJson(Map<String, dynamic> json) =>
       _$$CarImplFromJson(json);
@@ -154,10 +183,15 @@ class _$CarImpl implements _Car {
   @override
   @DoubleToStringConverter()
   final double price;
+  @override
+  @JsonKey(name: 'car_color')
+  final String color;
+  @override
+  final bool availability;
 
   @override
   String toString() {
-    return 'Car(id: $id, brand: $brand, model: $model, price: $price)';
+    return 'Car(id: $id, brand: $brand, model: $model, price: $price, color: $color, availability: $availability)';
   }
 
   @override
@@ -168,12 +202,16 @@ class _$CarImpl implements _Car {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.brand, brand) || other.brand == brand) &&
             (identical(other.model, model) || other.model == model) &&
-            (identical(other.price, price) || other.price == price));
+            (identical(other.price, price) || other.price == price) &&
+            (identical(other.color, color) || other.color == color) &&
+            (identical(other.availability, availability) ||
+                other.availability == availability));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, brand, model, price);
+  int get hashCode =>
+      Object.hash(runtimeType, id, brand, model, price, color, availability);
 
   @JsonKey(ignore: true)
   @override
@@ -194,7 +232,9 @@ abstract class _Car implements Car {
       final int id,
       @JsonKey(name: "car") final String brand,
       @JsonKey(name: "car_model") final String model,
-      @DoubleToStringConverter() final double price) = _$CarImpl;
+      @DoubleToStringConverter() final double price,
+      @JsonKey(name: 'car_color') final String color,
+      final bool availability) = _$CarImpl;
 
   factory _Car.fromJson(Map<String, dynamic> json) = _$CarImpl.fromJson;
 
@@ -209,6 +249,11 @@ abstract class _Car implements Car {
   @override
   @DoubleToStringConverter()
   double get price;
+  @override
+  @JsonKey(name: 'car_color')
+  String get color;
+  @override
+  bool get availability;
   @override
   @JsonKey(ignore: true)
   _$$CarImplCopyWith<_$CarImpl> get copyWith =>
